@@ -82,7 +82,7 @@ The **FoodApp** is a simple yet powerful application designed to:
 | **Food Groups** 
 |**Food Items** |
 |----------------------------------|
-|  |<img width="356" alt="Screenshot 2024-12-06 at 4 45 29 PM" src="https://github.com/user-attachments/assets/a149a93b-9efe-4a11-8346-935ee94a3172"> |
+| <img width="356" alt="Screenshot 2024-12-06 at 4 45 29 PM" src="https://github.com/user-attachments/assets/a149a93b-9efe-4a11-8346-935ee94a3172"> |
 
 
 ---
