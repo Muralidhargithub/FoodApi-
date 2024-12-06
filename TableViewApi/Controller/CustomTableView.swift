@@ -1,8 +1,10 @@
 import UIKit
 
 class CustomTableView: UIView {
+    // MARK: - Properties
     private var data: [FoodGroup] = []
     private let gitData: GitData = DataGit.shared
+    
     private let progressBar: UIProgressView = {
         let progressView = UIProgressView()
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -17,6 +19,7 @@ class CustomTableView: UIView {
         return tv
     }()
 
+    // MARK: - Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -27,6 +30,7 @@ class CustomTableView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - Setup UI
     private func setup() {
         addSubview(progressBar)
         addSubview(tableView)
@@ -46,25 +50,32 @@ class CustomTableView: UIView {
         ])
     }
 
+    // MARK: - Networking
     private func fetchData() {
         let url = ServerConstants.serverURL
-            progressBar.isHidden = false
-            progressBar.setProgress(0.3, animated: true)
-            
-            gitData.getdata(url: url) { [weak self] (foodData: FoodData) in
-                DispatchQueue.main.async {
-                    self?.progressBar.setProgress(0.7, animated: true)
-                }
-                self?.data = foodData.food_groups
-                DispatchQueue.main.async {
-                    self?.progressBar.setProgress(1.0, animated: true)
-                    self?.progressBar.isHidden = false
-                    self?.tableView.reloadData()
-                }
+        updateProgressBar(progress: 0.3, isHidden: false)
+        gitData.getdata(url: url) { [weak self] (foodData: FoodData) in
+            guard let self = self else {return}
+            DispatchQueue.main.async {
+                self.data = foodData.food_groups
+                self.updateProgressBar(progress: 1.0, isHidden: false)
+                self.reloadTableView()
             }
+        }
+    }
+
+    // MARK: - Helper Functions
+    func updateProgressBar(progress: Float, isHidden: Bool) {
+        progressBar.setProgress(progress, animated: true)
+        progressBar.isHidden = isHidden
+    }
+    
+    func reloadTableView() {
+        tableView.reloadData()
     }
 }
 
+// MARK: - UITableViewDataSource
 extension CustomTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
@@ -78,4 +89,3 @@ extension CustomTableView: UITableViewDataSource {
         return cell
     }
 }
-

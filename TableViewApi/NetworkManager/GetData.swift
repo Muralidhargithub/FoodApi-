@@ -9,75 +9,75 @@ import Foundation
 import UIKit
 
 protocol GitData {
-    func getdata<T: Decodable>(url:String, completion: @escaping @Sendable (T) -> Void)
+    func getdata<T: Decodable>(url: String, completion: @escaping @Sendable (T) -> Void)
     func getImage(url: String, completion: @escaping (UIImage?) -> Void)
 }
 
-final class DataGit: GitData{
+final class DataGit: GitData {
     
+    // MARK: - Properties
     static let shared = DataGit()
-    private let urlsession: URLSession
+    private let urlSession: URLSession
     private var imageCache = NSCache<NSString, UIImage>()
-    private init(){
+    
+    // MARK: - Initializer
+    private init() {
         let config = URLSessionConfiguration.default
-        self.urlsession = URLSession(configuration: config)
+        self.urlSession = URLSession(configuration: config)
     }
     
-    func getdata<T: Decodable>(url:String, completion: @escaping @Sendable (T) -> Void){
-        guard let serverurl = URL(string: url) else{
-            print("invalid url")
+    // MARK: - Data Fetching
+    func getdata<T: Decodable>(url: String, completion: @escaping @Sendable (T) -> Void) {
+        guard let serverURL = URL(string: url) else {
+            print("Invalid URL")
             return
         }
-        urlsession.dataTask(with: serverurl) { data, _, error in
-            
+        urlSession.dataTask(with: serverURL) { data, _, error in
             if let error = error {
-                print("error \(error.localizedDescription)")
+                print("Error fetching data: \(error.localizedDescription)")
                 return
             }
-            guard let data = data else{
-                print("no data")
+            guard let data = data else {
+                print("No data received")
                 return
             }
-            do{
-                let decod = try JSONDecoder().decode(T.self, from: data)
-                DispatchQueue.main.async(){
-                    completion(decod)
+            do {
+                let decoded = try JSONDecoder().decode(T.self, from: data)
+                DispatchQueue.main.async {
+                    completion(decoded)
                 }
-            }
-            catch{
+            } catch {
                 print("Decoding error: \(error)")
             }
         }.resume()
     }
-    func getImage(url: String, completion: @escaping (UIImage?) -> Void){
-        if let cachedImage = imageCache.object(forKey: url as NSString){
+    
+    // MARK: - Image Fetching
+    func getImage(url: String, completion: @escaping (UIImage?) -> Void) {
+        if let cachedImage = imageCache.object(forKey: url as NSString) {
             completion(cachedImage)
             return
         }
-        guard let url = URL(string: url) else {
+        guard let imageURL = URL(string: url) else {
             print("Invalid Image URL")
             completion(nil)
             return
         }
-        urlsession.dataTask(with: url) { data, _, error in
+        urlSession.dataTask(with: imageURL) { data, _, error in
             if let error = error {
                 print("Error fetching image: \(error.localizedDescription)")
                 completion(nil)
                 return
             }
-            guard let data = data, let image = UIImage(data: data) else{
+            guard let data = data, let image = UIImage(data: data) else {
                 print("Failed to load image data")
                 completion(nil)
                 return
             }
-            self.imageCache.setObject(image, forKey: url.absoluteString as NSString)
-            DispatchQueue.main.async{
+            self.imageCache.setObject(image, forKey: imageURL.absoluteString as NSString)
+            DispatchQueue.main.async {
                 completion(image)
             }
         }.resume()
-        
-        
-        
     }
-    
 }
