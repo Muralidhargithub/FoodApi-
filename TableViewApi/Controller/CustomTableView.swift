@@ -3,7 +3,6 @@ import UIKit
 class CustomTableView: UIView {
     private var data: [FoodGroup] = []
     private let gitData: GitData = DataGit.shared
-
     private let progressBar: UIProgressView = {
         let progressView = UIProgressView()
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +47,7 @@ class CustomTableView: UIView {
     }
 
     private func fetchData() {
-            let url = "https://raw.githubusercontent.com/shobhakartiwari/shobhakar_api_collections/39b4ed9c85833857e7d21c23352bb4857a818919/FoodData.json"
+        let url = ServerConstants.serverURL
             progressBar.isHidden = false
             progressBar.setProgress(0.3, animated: true)
             
