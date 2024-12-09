@@ -35,7 +35,7 @@ class CustomTableView: UIView {
         addSubview(progressBar)
         addSubview(tableView)
         tableView.dataSource = self
-        tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: "cell")
+        tableView.register(CustomFoodTableViewCell.self, forCellReuseIdentifier: "cell")
         
         NSLayoutConstraint.activate([
             progressBar.topAnchor.constraint(equalTo: topAnchor, constant: 10),
@@ -82,7 +82,7 @@ extension CustomTableView: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CustomTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? CustomFoodTableViewCell else {
             return UITableViewCell()
         }
         cell.configure(with: data[indexPath.row])
