@@ -6,7 +6,7 @@ import UIKit
 class CustomFoodTableViewModel {
     
     // MARK: - Properties
-    private var data: [FoodGroup] = []
+    var data: [FoodGroup] = []
     var updateView: (() -> Void)?
     var updateProgressBar: ((Float, Bool) -> Void)? // Closure for progress bar updates
 

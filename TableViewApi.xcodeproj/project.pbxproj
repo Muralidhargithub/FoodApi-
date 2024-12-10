@@ -6,7 +6,18 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		371A625A2D08E695000485E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37CDAB712CFD196300BF1E4A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 37CDAB782CFD196300BF1E4A;
+			remoteInfo = TableViewApi;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		371A62562D08E695000485E1 /* TableViewApiTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TableViewApiTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		37CDAB792CFD196300BF1E4A /* TableViewApi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TableViewApi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -21,6 +32,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		371A62572D08E695000485E1 /* TableViewApiTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = TableViewApiTests;
+			sourceTree = "<group>";
+		};
 		37CDAB7B2CFD196300BF1E4A /* TableViewApi */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -32,6 +48,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		371A62532D08E695000485E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37CDAB762CFD196300BF1E4A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -46,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				37CDAB7B2CFD196300BF1E4A /* TableViewApi */,
+				371A62572D08E695000485E1 /* TableViewApiTests */,
 				37CDAB7A2CFD196300BF1E4A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				37CDAB792CFD196300BF1E4A /* TableViewApi.app */,
+				371A62562D08E695000485E1 /* TableViewApiTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,6 +86,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		371A62552D08E695000485E1 /* TableViewApiTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 371A625E2D08E695000485E1 /* Build configuration list for PBXNativeTarget "TableViewApiTests" */;
+			buildPhases = (
+				371A62522D08E695000485E1 /* Sources */,
+				371A62532D08E695000485E1 /* Frameworks */,
+				371A62542D08E695000485E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				371A625B2D08E695000485E1 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				371A62572D08E695000485E1 /* TableViewApiTests */,
+			);
+			name = TableViewApiTests;
+			packageProductDependencies = (
+			);
+			productName = TableViewApiTests;
+			productReference = 371A62562D08E695000485E1 /* TableViewApiTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		37CDAB782CFD196300BF1E4A /* TableViewApi */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 37CDAB8C2CFD196600BF1E4A /* Build configuration list for PBXNativeTarget "TableViewApi" */;
@@ -93,6 +141,10 @@
 				LastSwiftUpdateCheck = 1610;
 				LastUpgradeCheck = 1610;
 				TargetAttributes = {
+					371A62552D08E695000485E1 = {
+						CreatedOnToolsVersion = 16.1;
+						TestTargetID = 37CDAB782CFD196300BF1E4A;
+					};
 					37CDAB782CFD196300BF1E4A = {
 						CreatedOnToolsVersion = 16.1;
 					};
@@ -113,11 +165,19 @@
 			projectRoot = "";
 			targets = (
 				37CDAB782CFD196300BF1E4A /* TableViewApi */,
+				371A62552D08E695000485E1 /* TableViewApiTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		371A62542D08E695000485E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37CDAB772CFD196300BF1E4A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -128,6 +188,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		371A62522D08E695000485E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		37CDAB752CFD196300BF1E4A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,7 +204,49 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		371A625B2D08E695000485E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 37CDAB782CFD196300BF1E4A /* TableViewApi */;
+			targetProxy = 371A625A2D08E695000485E1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		371A625C2D08E695000485E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apolis.TableViewApiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TableViewApi.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TableViewApi";
+			};
+			name = Debug;
+		};
+		371A625D2D08E695000485E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apolis.TableViewApiTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TableViewApi.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/TableViewApi";
+			};
+			name = Release;
+		};
 		37CDAB8D2CFD196600BF1E4A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -314,6 +423,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		371A625E2D08E695000485E1 /* Build configuration list for PBXNativeTarget "TableViewApiTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				371A625C2D08E695000485E1 /* Debug */,
+				371A625D2D08E695000485E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		37CDAB742CFD196300BF1E4A /* Build configuration list for PBXProject "TableViewApi" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
