@@ -17,6 +17,20 @@ class CustomFoodTableViewModel {
         return data[index]
     }
 
+    // Fetch Image for FoodGroup or FoodItem
+    func fetchImage(for url: String?, completion: @escaping (UIImage?) -> Void) {
+        guard let imageUrl = url else {
+            completion(UIImage(named: "placeholder"))
+            return
+        }
+
+        DataGit.shared.getImage(url: imageUrl) { image in
+            DispatchQueue.main.async {
+                completion(image ?? UIImage(named: "placeholder"))
+            }
+        }
+    }
+
     // MARK: - Networking
     func fetchData(with gitData: GitData?) {
         guard let gitData = gitData else {

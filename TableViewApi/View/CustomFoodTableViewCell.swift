@@ -28,6 +28,8 @@ class CustomFoodTableViewCell: UITableViewCell {
         return stack
     }()
 
+    private var viewModel: CustomFoodTableViewModel?
+
     // MARK: - Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -62,7 +64,9 @@ class CustomFoodTableViewCell: UITableViewCell {
     }
 
     // MARK: - Configuration
-    func configure(with foodGroup: FoodGroup) {
+    func configure(with foodGroup: FoodGroup, viewModel: CustomFoodTableViewModel) {
+        self.viewModel = viewModel
+        
         // Configure main group details
         label.text = """
         Name: \(foodGroup.name ?? "Unknown")
@@ -70,19 +74,13 @@ class CustomFoodTableViewCell: UITableViewCell {
         \n
         """
 
-        // Load group image
-        if let imageUrl = foodGroup.image_url {
-            DataGit.shared.getImage(url: imageUrl) { [weak self] image in
-                DispatchQueue.main.async {
-                    self?.articleImageView.image = image ?? UIImage(named: "placeholder")
-                }
-            }
-        } else {
-            articleImageView.image = UIImage(named: "placeholder")
+        // Fetch and set group image
+        viewModel.fetchImage(for: foodGroup.image_url) { [weak self] image in
+            self?.articleImageView.image = image
         }
 
         // Configure food items
-        foodItemStack.arrangedSubviews.forEach { $0.removeFromSuperview() } 
+        foodItemStack.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for item in foodGroup.food_items {
             let itemView = createFoodItemView(item: item)
             foodItemStack.addArrangedSubview(itemView)
@@ -102,10 +100,9 @@ class CustomFoodTableViewCell: UITableViewCell {
         itemImageView.translatesAutoresizingMaskIntoConstraints = false
         itemImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
         itemImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        DataGit.shared.getImage(url: item.image_url) { image in
-            DispatchQueue.main.async {
-                itemImageView.image = image ?? UIImage(named: "placeholder")
-            }
+
+        viewModel?.fetchImage(for: item.image_url) { image in
+            itemImageView.image = image
         }
 
         let itemLabel = UILabel()
