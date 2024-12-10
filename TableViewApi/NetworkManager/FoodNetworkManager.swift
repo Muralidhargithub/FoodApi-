@@ -10,7 +10,7 @@ import UIKit
 
 protocol GitData {
     func getdata<T: Decodable>(url: String, completion: @escaping @Sendable (T) -> Void)
-    func getImage(url: String, completion: @escaping (UIImage?) -> Void)
+    //func getImage(url: String, completion: @escaping (UIImage?) -> Void)
 }
 
 final class DataGit: GitData {

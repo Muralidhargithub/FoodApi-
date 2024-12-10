@@ -1,10 +1,14 @@
 import UIKit
 
-class CustomTableView: UIView {
+class CustomFoodTableView: UIView {
     // MARK: - Properties
     private var data: [FoodGroup] = []
-    private let gitData: GitData = DataGit.shared
-    
+    var gitData: GitData? {
+        didSet {
+            fetchData() // Fetch data when gitData is set
+        }
+    }
+
     private let progressBar: UIProgressView = {
         let progressView = UIProgressView()
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,7 +27,6 @@ class CustomTableView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
-        fetchData()
     }
 
     required init?(coder: NSCoder) {
@@ -36,7 +39,7 @@ class CustomTableView: UIView {
         addSubview(tableView)
         tableView.dataSource = self
         tableView.register(CustomFoodTableViewCell.self, forCellReuseIdentifier: "cell")
-        
+
         NSLayoutConstraint.activate([
             progressBar.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             progressBar.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
@@ -52,10 +55,15 @@ class CustomTableView: UIView {
 
     // MARK: - Networking
     private func fetchData() {
+        guard let gitData = gitData else {
+            print("gitData is not set")
+            return
+        }
+
         let url = ServerConstants.serverURL
         updateProgressBar(progress: 0.3, isHidden: false)
         gitData.getdata(url: url) { [weak self] (foodData: FoodData) in
-            guard let self = self else {return}
+            guard let self = self else { return }
             DispatchQueue.main.async {
                 self.data = foodData.food_groups
                 self.updateProgressBar(progress: 1.0, isHidden: false)
@@ -69,14 +77,14 @@ class CustomTableView: UIView {
         progressBar.setProgress(progress, animated: true)
         progressBar.isHidden = isHidden
     }
-    
+
     func reloadTableView() {
         tableView.reloadData()
     }
 }
 
 // MARK: - UITableViewDataSource
-extension CustomTableView: UITableViewDataSource {
+extension CustomFoodTableView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count
     }

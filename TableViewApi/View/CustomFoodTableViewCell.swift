@@ -1,6 +1,6 @@
 import UIKit
 
-class CustomTableViewCell: UITableViewCell {
+class CustomFoodTableViewCell: UITableViewCell {
     // MARK: - UI Components
     private let label: UILabel = {
         let lbl = UILabel()

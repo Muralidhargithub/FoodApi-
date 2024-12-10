@@ -8,22 +8,22 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     // MARK: - Properties
-    let tableView = CustomTableView()
-    
-    // MARK: - Lifecycle Methods
+    let tableView = CustomFoodTableView()
+    var gitData: GitData? {
+        didSet {
+            tableView.gitData = gitData
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
     }
-    
-    // MARK: - UI Setup
-    func setUI(){
+
+    func setUI() {
         tableView.frame = view.bounds
         view.addSubview(tableView)
     }
-
-
 }
 
