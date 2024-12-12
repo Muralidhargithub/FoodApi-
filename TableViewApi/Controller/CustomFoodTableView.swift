@@ -4,7 +4,8 @@ class CustomFoodTableView: UIView {
     
     // MARK: - Properties
     private let viewModel = CustomFoodTableViewModel()
-    var gitData: GitData? {
+    var gitData: GitData?
+    {
         didSet {
             viewModel.fetchData(with: gitData)
         }

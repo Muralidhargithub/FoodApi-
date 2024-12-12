@@ -10,7 +10,8 @@ import UIKit
 class ViewController: UIViewController {
     // MARK: - Properties
     let tableView = CustomFoodTableView()
-    var gitData: GitData? {
+    var gitData: GitData?
+    {
         didSet {
             tableView.gitData = gitData
         }
